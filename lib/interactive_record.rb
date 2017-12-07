@@ -57,7 +57,7 @@ class InteractiveRecord
     else
       "'#{value}'"
     end
-
+    sql = "SELECT * FROM #{self.table_name} WHERE #{atrribute.keys.first} = #{integer_attribute}"
     row = DB[:conn].execute(sql)
   end
 
