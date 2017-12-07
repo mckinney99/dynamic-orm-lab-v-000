@@ -49,9 +49,15 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    key = attribute.keys[0]
-    values = attribute.values[0]
-    sql = "SELECT * FROM #{self.table_name} WHERE #{key} = '#{value}'"
+    value = attribute.values.first
+    integer_value = value.class
+    integer_attribute =
+    if integer_value.is_a? Integer
+      value
+    else
+      "'#{value}'"
+    end
+
     row = DB[:conn].execute(sql)
   end
 
